@@ -9,9 +9,22 @@ const need = (k: string): string => {
   return v;
 };
 const db = createDb(need("DATABASE_URL"));
-await migrate(db, SCHEMA, fileURLToPath(new URL("../../migrations/", import.meta.url)));
 const app = buildServer(db, { issuer: need("OIDC_ISSUER"), audience: need("OIDC_AUDIENCE"), jwksUrl: need("OIDC_JWKS_URL") });
-await app.listen({ host: "0.0.0.0", port: Number(process.env.PORT ?? 8080) });
+try {
+  await migrate(db, SCHEMA, fileURLToPath(new URL("../../migrations/", import.meta.url)));
+  await app.listen({ host: "0.0.0.0", port: Number(process.env.PORT ?? 8080) });
+} catch (err) {
+  logger.fatal({ err: (err as Error).message }, `${MODULE_KEY} failed to start`);
+  await db.end().catch(() => undefined);
+  process.exit(1);
+}
+const shutdown = async (): Promise<void> => {
+  await app.close();
+  await db.end();
+  process.exit(0);
+};
+process.on("SIGTERM", () => void shutdown());
+process.on("SIGINT", () => void shutdown());
 
 // Outbox relay. Service Bus publisher is wired by the Azure packaging milestone; native installs use the in-process bus.
 const bus = new InProcessBus();
