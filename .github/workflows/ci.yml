@@ -1,0 +1,55 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '17 3 1 * *'
+permissions:
+  contents: read
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env: { POSTGRES_USER: clniq, POSTGRES_HOST_AUTH_METHOD: trust }
+        ports: ["5432:5432"]
+        options: --health-cmd "pg_isready -U clniq" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://clniq@localhost:5432/postgres
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version-file: package.json, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: Lint (eslint, raw style values, cross-schema SQL)
+        run: pnpm lint
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Build
+        run: pnpm build
+      - name: Tests (unit, contract, RLS isolation, run-alone)
+        run: pnpm test
+      - name: Token drift report
+        run: pnpm --filter @clniq/design-tokens diff
+      - name: Module template generates and passes every gate
+        run: |
+          pnpm new:module sample-check "Sample Check"
+          pnpm install --no-frozen-lockfile
+          pnpm lint && pnpm typecheck && pnpm build && pnpm test modules/sample-check
+
+  capture-clniq-design:
+    # packaging Part A step 7: monthly re-capture of clniq.com; a PR follows when the site changed.
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version-file: package.json, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @clniq/design-tokens exec playwright install --with-deps chromium
+      - run: pnpm --filter @clniq/design-tokens capture
+      - run: pnpm --filter @clniq/design-tokens diff

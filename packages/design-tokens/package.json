@@ -1,0 +1,15 @@
+{
+  "name": "@clniq/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Single source of visual truth, 1:1 with clniq.com (packaging Part A).",
+  "exports": { "./css": "./dist/tokens.css", "./json": "./dist/tokens.json", ".": "./dist/tokens.js" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "node scripts/build.mjs --check",
+    "capture": "node capture/capture-clniq.mjs",
+    "diff": "node capture/token-diff.mjs"
+  },
+  "devDependencies": { "style-dictionary": "^4.2.0", "playwright": "^1.48.2" }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "@clniq/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { "./events": "./dist/events.js", "./openapi/*": "./openapi/*" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "gen": "node scripts/gen-sdk.mjs"
+  },
+  "dependencies": { "ajv": "^8.17.1", "ajv-formats": "^3.0.1", "yaml": "^2.6.0" },
+  "devDependencies": { "openapi-typescript": "^7.4.2", "@redocly/cli": "^1.25.11" }
+}

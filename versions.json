@@ -1,0 +1,8 @@
+{
+  "$comment": "packaging.md Part B: one manifest pins every runtime, Postgres, reverse proxy and library line for all targets. Renovate watches this file.",
+  "node": "22.11.0",
+  "postgres": "16.4",
+  "reverseProxy": { "name": "caddy", "version": "2.8.4" },
+  "targets": ["oci-linux-amd64", "oci-linux-arm64", "win-x64", "win-arm64", "osx-arm64", "osx-x64"],
+  "lts": { "node": "22", "postgres": "16" }
+}
