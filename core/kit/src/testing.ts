@@ -7,8 +7,8 @@ if (process.env.NODE_ENV === "production") throw new Error("@clniq/kit/testing m
 
 export const TEST_ISSUER = "https://id.test.clniq.local";
 export const TEST_AUDIENCE = "clniq-api";
-/** Random per process: no signing secret lives in source or in the built package. */
-export const testKey: Uint8Array = randomBytes(32);
+/** Random per process and module-private: no signing secret lives in source, in the built package, or in any public export. */
+const testKey: Uint8Array = randomBytes(32);
 
 export type TestPrincipal = {
   tid: string;
