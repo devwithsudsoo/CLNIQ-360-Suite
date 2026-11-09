@@ -1,0 +1,26 @@
+{
+  "$description": "source: clniq.com = captured from the live site; provisional = placeholder until the Playwright capture (capture/) runs from a network that reaches clniq.com. token-diff fails CI on drift once captured.",
+  "color": {
+    "brand": {
+      "primary": { "$value": "#0d9488", "$type": "color", "$extensions": { "clniq": { "source": "clniq.com", "evidence": "meta theme-color" } } },
+      "primary-hover": { "$value": "#0f766e", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } },
+      "primary-subtle": { "$value": "#f0fdfa", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } },
+      "on-primary": { "$value": "#ffffff", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } }
+    },
+    "text": {
+      "default": { "$value": "#0f172a", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } },
+      "muted": { "$value": "#475569", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } }
+    },
+    "surface": {
+      "page": { "$value": "#ffffff", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } },
+      "raised": { "$value": "#f8fafc", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } }
+    },
+    "border": { "default": { "$value": "#e2e8f0", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } } },
+    "focus": { "ring": { "$value": "{color.brand.primary}", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } } },
+    "status": {
+      "danger": { "$value": "#b91c1c", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } },
+      "warning": { "$value": "#b45309", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } },
+      "success": { "$value": "#15803d", "$type": "color", "$extensions": { "clniq": { "source": "provisional" } } }
+    }
+  }
+}

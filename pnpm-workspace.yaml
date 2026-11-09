@@ -1,0 +1,6 @@
+packages:
+  - core/*
+  - modules/*
+  - integrations/*
+  - apps/*
+  - packages/*

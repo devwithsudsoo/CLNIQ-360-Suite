@@ -1,0 +1,13 @@
+{
+  "$comment": "Module Registry self-registration record (C1). Admin console (C2) lists modules from these.",
+  "key": "__KEY__",
+  "name": "__NAME__",
+  "kind": "adhoc",
+  "version": "0.1.0",
+  "schema": "__SCHEMA__",
+  "depends_on": ["core"],
+  "channels": ["UI", "API"],
+  "default_quota": 10000,
+  "health_url": "/health/ready",
+  "ui_entry": "./ui/index.js"
+}

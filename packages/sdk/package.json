@@ -1,0 +1,13 @@
+{
+  "name": "@clniq/sdk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { ".": "./dist/index.js" },
+  "scripts": {
+    "prebuild": "pnpm --filter @clniq/contracts run gen",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "pnpm run prebuild && tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": { "@clniq/contracts": "workspace:*" }
+}
