@@ -9,3 +9,4 @@ coverage/
 storybook-static/
 packages/sdk/src/generated/
 test-results/
+.cto-toolkit/
