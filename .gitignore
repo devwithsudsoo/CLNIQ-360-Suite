@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.pgdata/
+*.log
+.env
+.env.*
+!.env.example
+storybook-static/
+packages/sdk/src/generated/
+test-results/
+.cto-toolkit/
