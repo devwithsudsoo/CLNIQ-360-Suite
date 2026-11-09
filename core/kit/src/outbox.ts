@@ -80,6 +80,9 @@ export const replayDead = async (db: Db, schema: string, ids: string[]): Promise
     );
     await tx.query("COMMIT");
     return rowCount ?? 0;
+  } catch (err) {
+    await tx.query("ROLLBACK").catch(() => undefined);
+    throw err;
   } finally {
     tx.release();
   }

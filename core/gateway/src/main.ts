@@ -29,4 +29,10 @@ const app = createGateway({
   quota: new MemoryQuotaCounter(),
   auth: { issuer: env("OIDC_ISSUER"), audience: env("OIDC_AUDIENCE"), jwksUrl: env("OIDC_JWKS_URL") }
 });
-await app.listen({ host: "0.0.0.0", port: Number(process.env.PORT ?? 8080) });
+try {
+  await app.listen({ host: "0.0.0.0", port: Number(process.env.PORT ?? 8080) });
+} catch (err) {
+  app.log.fatal({ err: (err as Error).message }, "gateway failed to start");
+  process.exit(1);
+}
+process.on("SIGTERM", () => void app.close().then(() => process.exit(0)));
