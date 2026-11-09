@@ -1,0 +1,65 @@
+openapi: 3.1.0
+info: { title: CLNIQ __NAME__ API, version: 1.0.0 }
+servers: [{ url: / }]
+security: [{ bearer: [] }]
+paths:
+  /api/v1/__KEY__/records:
+    get:
+      operationId: listRecords
+      x-permission: "__KEY__:read"
+      parameters:
+        - $ref: "../../../packages/contracts/openapi/common.yaml#/components/parameters/Cursor"
+        - $ref: "../../../packages/contracts/openapi/common.yaml#/components/parameters/Limit"
+      responses:
+        "200":
+          description: A page of records visible in the caller's tenant, clinic and practice scope
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, page]
+                properties:
+                  items: { type: array, items: { $ref: "#/components/schemas/Record" } }
+                  page: { $ref: "../../../packages/contracts/openapi/common.yaml#/components/schemas/PageInfo" }
+        default: { $ref: "../../../packages/contracts/openapi/common.yaml#/components/responses/Problem" }
+    post:
+      operationId: createRecord
+      x-permission: "__KEY__:write"
+      parameters:
+        - $ref: "../../../packages/contracts/openapi/common.yaml#/components/parameters/IdempotencyKey"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/RecordInput" }
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Record" }
+        default: { $ref: "../../../packages/contracts/openapi/common.yaml#/components/responses/Problem" }
+components:
+  securitySchemes:
+    bearer: { type: http, scheme: bearer, bearerFormat: JWT }
+  schemas:
+    RecordInput:
+      type: object
+      additionalProperties: false
+      required: [clinic_id, practice_id, label]
+      properties:
+        clinic_id: { type: string, format: uuid }
+        practice_id: { type: string, format: uuid }
+        label: { type: string, minLength: 1, maxLength: 200 }
+        external_ref: { type: object, additionalProperties: { type: string } }
+    Record:
+      type: object
+      required: [id, tenant_id, clinic_id, practice_id, label, created_at]
+      properties:
+        id: { type: string, format: uuid }
+        tenant_id: { type: string, format: uuid }
+        clinic_id: { type: string, format: uuid }
+        practice_id: { type: string, format: uuid }
+        label: { type: string }
+        external_ref: { type: object, additionalProperties: { type: string } }
+        created_at: { type: string, format: date-time }

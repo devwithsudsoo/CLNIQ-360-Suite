@@ -1,0 +1,17 @@
+{
+  "name": "@clniq/gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "API gateway: JWT → entitlement(tenant,module,channel,quota) → RBAC <m>:<action> → module upstream (R4).",
+  "exports": { ".": "./dist/index.js" },
+  "bin": { "clniq-gateway": "./dist/main.js" },
+  "scripts": { "build": "tsc -p tsconfig.json", "typecheck": "tsc -p tsconfig.json --noEmit", "start": "node dist/main.js" },
+  "dependencies": {
+    "@clniq/kit": "workspace:*",
+    "@fastify/reply-from": "^11.0.1",
+    "fastify": "^5.1.0",
+    "jose": "^5.9.6",
+    "yaml": "^2.6.0"
+  }
+}

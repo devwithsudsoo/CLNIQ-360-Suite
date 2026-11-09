@@ -1,0 +1,43 @@
+{
+  "font": {
+    "family": {
+      "sans": { "$value": "system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Noto Sans Malayalam', 'Noto Sans Devanagari', 'Noto Sans Tamil', 'Noto Sans Kannada', 'Noto Sans Telugu', sans-serif", "$type": "fontFamily", "$extensions": { "clniq": { "source": "provisional", "note": "Indic fallbacks per packaging Part A step 6" } } }
+    },
+    "weight": {
+      "regular": { "$value": 400, "$type": "fontWeight", "$extensions": { "clniq": { "source": "provisional" } } },
+      "medium": { "$value": 500, "$type": "fontWeight", "$extensions": { "clniq": { "source": "provisional" } } },
+      "semibold": { "$value": 600, "$type": "fontWeight", "$extensions": { "clniq": { "source": "provisional" } } }
+    },
+    "size": {
+      "sm": { "$value": "0.875rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+      "md": { "$value": "1rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+      "lg": { "$value": "1.25rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+      "xl": { "$value": "1.75rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } }
+    },
+    "line-height": { "body": { "$value": "1.5", "$type": "number", "$extensions": { "clniq": { "source": "provisional" } } } }
+  },
+  "space": {
+    "1": { "$value": "0.25rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+    "2": { "$value": "0.5rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+    "3": { "$value": "0.75rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+    "4": { "$value": "1rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+    "6": { "$value": "1.5rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+    "8": { "$value": "2rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } }
+  },
+  "radius": {
+    "sm": { "$value": "0.375rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+    "md": { "$value": "0.5rem", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } },
+    "full": { "$value": "9999px", "$type": "dimension", "$extensions": { "clniq": { "source": "provisional" } } }
+  },
+  "shadow": { "raised": { "$value": "0 1px 2px rgb(15 23 42 / 0.06), 0 1px 3px rgb(15 23 42 / 0.1)", "$type": "shadow", "$extensions": { "clniq": { "source": "provisional" } } } },
+  "motion": {
+    "duration": { "fast": { "$value": "120ms", "$type": "duration", "$extensions": { "clniq": { "source": "provisional" } } } },
+    "easing": { "standard": { "$value": "cubic-bezier(0.2, 0, 0, 1)", "$type": "cubicBezier", "$extensions": { "clniq": { "source": "provisional" } } } }
+  },
+  "breakpoint": {
+    "sm": { "$value": "390px", "$type": "dimension", "$extensions": { "clniq": { "source": "packaging.md", "note": "capture widths" } } },
+    "md": { "$value": "768px", "$type": "dimension", "$extensions": { "clniq": { "source": "packaging.md" } } },
+    "lg": { "$value": "1024px", "$type": "dimension", "$extensions": { "clniq": { "source": "packaging.md" } } },
+    "xl": { "$value": "1440px", "$type": "dimension", "$extensions": { "clniq": { "source": "packaging.md" } } }
+  }
+}

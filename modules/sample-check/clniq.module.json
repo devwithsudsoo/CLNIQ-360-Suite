@@ -1,0 +1,13 @@
+{
+  "$comment": "Module Registry self-registration record (C1). Admin console (C2) lists modules from these.",
+  "key": "sample-check",
+  "name": "Sample Check",
+  "kind": "adhoc",
+  "version": "0.1.0",
+  "schema": "sample_check",
+  "depends_on": ["core"],
+  "channels": ["UI", "API"],
+  "default_quota": 10000,
+  "health_url": "/health/ready",
+  "ui_entry": "./ui/index.js"
+}
